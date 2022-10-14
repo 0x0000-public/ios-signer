@@ -34,9 +34,12 @@ jobs:
           sudo networksetup -setdnsservers Ethernet 100.100.100.100
           echo "Sleeping"
           sleep 15
+          echo "TS ping"
+          tailscale ping anis-iphone -c 5
+          echo "TS status"
           tailscale status
           echo "Pinging"
-          ping anis-ios -c 10
+          dscacheutil -q host -a name anis-iphone
       - if: always()
         run: |
           echo "Bringing down tailscale"
