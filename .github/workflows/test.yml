@@ -32,9 +32,9 @@ jobs:
           echo "Running tailscale"
           tailscale up --authkey=${{ secrets.TAILSCALE_AUTHKEY }} --hostname={github-ios-builder}
           echo "DNS Setup"
-          sudo networksetup -setdnsservers Ethernet 100.100.100.100
+          # sudo networksetup -setdnsservers Ethernet 100.100.100.100
           echo "Sleeping"
-          sleep 15
+          sleep 3
           scutil --dns
           echo "TS ping"
           tailscale ping -c 5 anis-iphone 
