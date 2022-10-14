@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: iOS Builder
 
 # Controls when the workflow will run
 on:
@@ -17,11 +17,15 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Connect Tailscale
-        uses: tailscale/github-action@v1
-        with:
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+    
+      - name: Setup Go environment
+        uses: actions/setup-go@v3.3.0
+        
       - run: |
           echo "Starting"
+          go install tailscale.com/cmd/tailscale{,d}@main
+          sudo $HOME/go/bin/tailscaled install-system-daemon
+          tailscale up --authkey=${{ secrets.TAILSCALE_AUTHKEY }} --hostname={github-ios-builder}
+          tailscale status
           sleep 15
 
