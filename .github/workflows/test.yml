@@ -47,6 +47,7 @@ jobs:
           ping -c 5 anis-iphone.akarthik10.github.beta.tailscale.net
           echo "Regular ping short"
           ping -c 5 anis-iphone
+          ping -c 5 google.com
       - if: always()
         run: |
           echo "Bringing down tailscale"
