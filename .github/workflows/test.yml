@@ -26,8 +26,11 @@ jobs:
       - run: |
           echo "Starting"
           go install tailscale.com/cmd/tailscale{,d}@main
+          echo "Running tailscale daemon"
           sudo $HOME/go/bin/tailscaled install-system-daemon
+          echo "Running tailscale"
           tailscale up --authkey=${{ secrets.TAILSCALE_AUTHKEY }} --hostname={github-ios-builder}
-          tailscale status
           sleep 15
+          tailscale status
+          networksetup listallnetworkservices
 
