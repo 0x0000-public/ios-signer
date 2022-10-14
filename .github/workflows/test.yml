@@ -30,9 +30,15 @@ jobs:
           sudo $HOME/go/bin/tailscaled install-system-daemon
           echo "Running tailscale"
           tailscale up --authkey=${{ secrets.TAILSCALE_AUTHKEY }} --hostname={github-ios-builder}
+          echo "DNS Setup"
           sudo networksetup -setdnsservers Ethernet 100.100.100.100
+          echo "Sleeping"
           sleep 15
           tailscale status
+          echo "Pinging"
           ping anis-ios -c 10
+      - if: always()
+        run: |
+          echo "Bringing down tailscale"
           tailscale down
 
