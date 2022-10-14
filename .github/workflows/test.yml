@@ -31,21 +31,7 @@ jobs:
           sudo $HOME/go/bin/tailscaled install-system-daemon
           echo "Running tailscale"
           tailscale up --authkey=${{ secrets.TAILSCALE_AUTHKEY }} --hostname={github-ios-builder}
-          echo "DNS Setup"
-          # sudo networksetup -setdnsservers Ethernet 100.100.100.100
-          echo "Sleeping"
-          sleep 3
-          scutil --dns
-          echo "TS ping"
-          tailscale ping -c 5 anis-iphone 
-          echo "Pinging"
-          dscacheutil -q host -a name anis-iphone
-          echo "Ping ip"
-          ping -c 5 100.106.100.66
-          echo "TS status"
           tailscale status
-          echo "Regular ping"
-          ping -c 5 anis-iphone.akarthik10.github.beta.tailscale.net
           echo "Regular ping short"
           ping -c 5 anis-iphone
       - if: always()
