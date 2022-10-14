@@ -42,6 +42,11 @@ jobs:
           ping -c 5 100.106.100.66
           echo "TS status"
           tailscale status
+          echo "Regular ping"
+          ping -c 5 anis-iphone.akarthik10.github.beta.tailscale.net
+          echo "Regular ping short"
+          ping -c 5 anis-iphone
+          scutil --dns
       - if: always()
         run: |
           echo "Bringing down tailscale"
