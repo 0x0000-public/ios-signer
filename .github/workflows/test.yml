@@ -20,6 +20,8 @@ jobs:
     
       - name: Setup Go environment
         uses: actions/setup-go@v3.3.0
+        with:
+          go-version: 1.18
         
       - run: |
           echo "Starting"
