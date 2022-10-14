@@ -35,9 +35,9 @@ jobs:
           sleep 15
           scutil --dns
           echo "TS ping"
-          tailscale ping -c 5 anis-iphone 
+          #tailscale ping -c 5 anis-iphone 
           echo "Pinging"
-          dscacheutil -q host -a name anis-iphone
+          #dscacheutil -q host -a name anis-iphone
           echo "Ping ip"
           ping -c 5 100.106.100.66
           echo "TS status"
