@@ -13,6 +13,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: macos-12
+    environment: development
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -20,4 +21,7 @@ jobs:
         uses: tailscale/github-action@v1
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+      - run: |
+          echo "Starting"
+          sleep 15
 
