@@ -40,5 +40,5 @@ jobs:
       - if: always()
         run: |
           echo "Bringing down tailscale"
-          tailscale down
+          tailscale logout
 
