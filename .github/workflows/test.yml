@@ -35,11 +35,13 @@ jobs:
           echo "Sleeping"
           sleep 15
           echo "TS ping"
-          tailscale ping anis-iphone -c 5
-          echo "TS status"
-          tailscale status
+          tailscale ping -c 5 anis-iphone 
           echo "Pinging"
           dscacheutil -q host -a name anis-iphone
+          echo "Ping ip"
+          ping -c 5 100.106.100.66
+          echo "TS status"
+          tailscale status
       - if: always()
         run: |
           echo "Bringing down tailscale"
